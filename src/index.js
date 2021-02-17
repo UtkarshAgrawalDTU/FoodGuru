@@ -24,7 +24,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-
+var storage = firebase.storage();
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

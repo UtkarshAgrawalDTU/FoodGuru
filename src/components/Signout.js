@@ -34,7 +34,6 @@ class Signout extends Component {
             {
                 return(
                     <div className = "Loading">
-                        <Navbar />
                         <h2>Signing Out....</h2>
                     </div>
                 )

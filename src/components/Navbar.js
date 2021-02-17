@@ -33,8 +33,16 @@ class Navbar extends Component{
 
     render()
     {
+        if(this.state.loading || this.props.loading)
+        {
+            return (
+                <div>
 
-        if(this.props.currentUser === null)
+                </div>
+            )
+        }
+
+        if(this.props.currentUser == null)
         {
             return (
                 <div className = "Home">
