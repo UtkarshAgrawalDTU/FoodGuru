@@ -7,7 +7,7 @@ import firebase from 'firebase/app'
 import 'firebase/storage';
 
 
-class Profile extends Component {
+class UpdateProfile extends Component {
   
     componentDidMount()
     {
@@ -15,13 +15,12 @@ class Profile extends Component {
             loading : true
         })
 
-        this.props.getCurrentUser();
+        this.props.getCurrentUser()
         this.file = null
 
         this.setState({
             loading : false
         })
-
 
         this.setRef = ref => {
             this.file = ref;
@@ -34,11 +33,23 @@ class Profile extends Component {
         this.state  = {
             loading : true,
             error : null,
-
+            // form_details : {
+            //     name: "",
+            //     email : "",
+            // }
         };
 
         this.upload = this.upload.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
+
+
+
+    handleSubmit(event)
+    {
+        event.preventDefault();
+    }
+
 
     upload(event)
     {
@@ -89,6 +100,8 @@ class Profile extends Component {
 
     }
   
+
+
     render()
     {
         console.log(this.props, this.state);
@@ -113,11 +126,13 @@ class Profile extends Component {
                 <div className = "Home">
                     <Navbar currentUser = {this.props.currentUser}/>
                     <h2>Profile</h2>
-                    <h3>{this.props.currentUser.email}</h3>
-                    <h3>{this.props.currentUser.name}</h3>
+                    <input name = "name" type = "text"  />
+                    <input name = "email" type = "text" />
                     <img src = {this.props.currentUser.photoUrl}></img>
                     <input type = "file" ref = {this.setRef} />
-                    <button type="button" class="btn btn-primary" onClick = {this.upload}>Primary</button>
+                    <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile Picture</button>
+                    <br />
+                    <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile</button>
                 </div>
             )
         }
@@ -141,4 +156,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfile)

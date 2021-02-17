@@ -29,11 +29,9 @@ class LandingPage extends Component{
 
     render()
     {
-        
-        console.log(this.props)
         return (
             <div>
-                <Navbar />
+                <Navbar currentUser = {this.props.currentUser}/>
                 <HereMap
                     apikey= "UXLkRChcRiPgtuU9dGgOamUae8XHGdOIIhpCIgNaTyk"
                     lat="20"

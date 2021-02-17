@@ -5,7 +5,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import Signout from './components/Signout'
-
+import UpdateProfile from './components/UpdateProfile'
 
 import {
   BrowserRouter as Router,
@@ -27,6 +27,10 @@ function App() {
           </Route>
           <Route path="/profile" exact>
             <Profile />
+          </Route>
+
+          <Route path="/profile/update" exact>
+            <UpdateProfile />
           </Route>
 
           <Route path="/signout" exact>

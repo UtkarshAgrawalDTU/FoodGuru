@@ -64,7 +64,6 @@ class Login extends Component {
         {
             return(
                 <div className = "Loading">
-                    <Navbar />
                     <h2>Loading</h2>
                 </div>
             )
@@ -74,13 +73,12 @@ class Login extends Component {
     if (this.props.currentUser && this.props.currentUser != null)
     {
         console.log("Already logged in");
-        console.log(this.props);
         return <Redirect to = "/" />
     }
 
       return(
         <div className="Login">
-            <Navbar />
+            <Navbar currentUser = {this.props.currentUser}/>
             <h1>Login</h1>
 
             <form method = "POST">

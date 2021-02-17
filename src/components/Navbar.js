@@ -9,39 +9,11 @@ class Navbar extends Component{
 
     constructor(props)
     {
-        super(props);
-        this.state  = {
-            loading : true
-        };
-        
+        super(props);    
     }
-
-
-    componentDidMount()
-    {
-        this.setState({
-            loading : true
-        })
-
-        this.props.getCurrentUser();
-
-        this.setState({
-            loading : false
-        })
-    }
-
 
     render()
     {
-        if(this.state.loading || this.props.loading)
-        {
-            return (
-                <div>
-
-                </div>
-            )
-        }
-
         if(this.props.currentUser == null)
         {
             return (
@@ -104,20 +76,5 @@ class Navbar extends Component{
 };
 
 
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        getCurrentUser : () => dispatch(getCurrentUser())
-    }
-}
 
-
-
-const mapStateToProps = (state) => {
-    return {
-        currentUser : state.auth.currentUser,
-        loading : state.auth.loading
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;

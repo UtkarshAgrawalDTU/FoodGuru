@@ -59,7 +59,7 @@ const getCurrentUser = () => {
                                 return false;
                             })
                     }
-                    }) 
+                }) 
             } 
             else {
                 dispatch(noCurrentUser());

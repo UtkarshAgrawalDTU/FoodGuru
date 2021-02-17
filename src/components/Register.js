@@ -56,7 +56,6 @@ class Register extends Component {
         {
             return(
                 <div className = "Loading">
-                    <Navbar />
                     <h2>Loading</h2>
                 </div>
             )
@@ -76,7 +75,7 @@ class Register extends Component {
 
       return(
         <div className="Register">
-            <Navbar />
+            <Navbar currentUser = {this.props.currentUser}/>
             <h1>Register</h1>
 
             <form method = "POST">
