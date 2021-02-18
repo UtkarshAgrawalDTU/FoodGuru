@@ -5,6 +5,7 @@ import {getCurrentUser} from '../store/actions/authActions'
 import Navbar from './Navbar'
 import firebase from 'firebase/app'
 import 'firebase/storage';
+import Loading from './Loading'
 
 
 class UpdateProfile extends Component {
@@ -33,21 +34,30 @@ class UpdateProfile extends Component {
         this.state  = {
             loading : true,
             error : null,
-            // form_details : {
-            //     name: "",
-            //     email : "",
-            // }
+            form_details : {
+                name: "",
+            }
         };
 
         this.upload = this.upload.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(e)
+    {
+        this.setState({
+            form_details : {
+                [e.target.name] : e.target.value,
+            }
+        })
     }
 
 
 
     handleSubmit(event)
     {
-        event.preventDefault();
+        ///complete this!!
     }
 
 
@@ -109,9 +119,7 @@ class UpdateProfile extends Component {
         if(this.props.loading || this.state.loading)
         {
             return(
-                <div className = "Home">
-                    <h2>Loading</h2>
-                </div>
+                <Loading />
             )
         }
 
@@ -125,14 +133,24 @@ class UpdateProfile extends Component {
             return(
                 <div className = "Home">
                     <Navbar currentUser = {this.props.currentUser}/>
-                    <h2>Profile</h2>
-                    <input name = "name" type = "text"  />
-                    <input name = "email" type = "text" />
-                    <img src = {this.props.currentUser.photoUrl}></img>
-                    <input type = "file" ref = {this.setRef} />
-                    <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile Picture</button>
-                    <br />
-                    <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile</button>
+                    <h2>Update Profile</h2>
+                    <div className = "row">
+
+                        <div className = "col-md-6 col-sm-12">
+                            <input name = "name" type = "text"  placeholder = {this.props.currentUser.name} onChange = {this.handleChange}/>
+                            <input className ="form-control" type = "email" value = {this.props.currentUser.email} readonly />
+                            <button type="button" class="btn btn-primary" onClick = {this.handleSubmit}>Update Profile</button>
+                        </div>
+
+                        <div className = "col-md-6 col-sm-12">
+                            <input className ="form-control-file" type = "file" ref = {this.setRef} />
+                            <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile Picture</button>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
                 </div>
             )
         }

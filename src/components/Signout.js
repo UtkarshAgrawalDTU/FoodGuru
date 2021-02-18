@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect} from "react-router-dom";
 import {signoutUser} from '../store/actions/authActions'
 import Navbar from './Navbar'
+import Loading from './Loading'
 
 class Signout extends Component {
   
@@ -33,16 +34,13 @@ class Signout extends Component {
         if(this.props.loading || this.state.loading)
             {
                 return(
-                    <div className = "Loading">
-                        <h2>Signing Out....</h2>
-                    </div>
+                    <Loading />
                 )
             }
 
 
         else if (this.props.error)
         {
-            console.log("Error signing out")
             return <Redirect to = "/" />
         }
 
@@ -51,7 +49,6 @@ class Signout extends Component {
             return <Redirect to = "/" />
         }
         
-  
     }
 };
 
