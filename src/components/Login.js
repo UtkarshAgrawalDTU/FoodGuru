@@ -5,8 +5,8 @@ import {Redirect} from "react-router-dom";
 import {getCurrentUser} from '../store/actions/authActions'
 import Navbar from './Navbar'
 import Loading from './Loading'
-import './Login.css'
-import {Link} from "react-router-dom";
+import './common.css'
+
 
 class Login extends Component {
   
@@ -55,7 +55,7 @@ class Login extends Component {
     render()
   {
     var error = this.props.error != null && this.props.error != "No logged in user"? 
-    (<div class="alert alert-danger" role="alert">
+    (<div class="alert alert-danger my-2" role="alert">
         <strong>Error logging in</strong>
     </div>) : <div /> 
 
@@ -76,35 +76,27 @@ class Login extends Component {
 
         <div className = "body">
             <Navbar currentUser = {this.props.currentUser} />
-            <div class="app">
 
-		    <div class="bg">
+            <div className = "container center my-5">
+
+                <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" id = "email" value = {this.state.email} onChange = {this.handleChange} class="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" id = "password" value = {this.state.password} onChange = {this.handleChange} class="form-control" placeholder="Password" />
+                </div>
+
+                {error}
+
+                <button type="submit" class="btn btn-primary" onClick = {this.handleSubmit} >Submit</button>
+
+
+                </form>
+
             </div>
-		    <form method = "POST">
-			<header>
-				<img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/reading_0re1.svg" />
-			</header>
-
-			<div class="inputs">
-				<input type="email" id = "email" value = {this.state.email} onChange = {this.handleChange} placeholder = "email" />
-				<input type="password" id = "password" value = {this.state.password} onChange = {this.handleChange} placeholder = "password"/>
-			</div>
-		    </form>
-
-		    <footer>
-			<button className = "my-1" onClick = {this.handleSubmit}>Login</button>
-            <Link to="/register" style={{ textDecoration: 'none' , color:'black'}}>
-			<p>Don't have an account? Sign Up</p>
-            </Link>
-
-            {error}
-
-
-
-		</footer>
-
-
-	    </div>
         </div>
       )
   }

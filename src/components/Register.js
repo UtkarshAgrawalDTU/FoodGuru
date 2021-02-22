@@ -5,8 +5,8 @@ import {Redirect} from "react-router-dom";
 import {getCurrentUser} from '../store/actions/authActions'
 import Navbar from './Navbar'
 import Loading from './Loading'
-import {Link} from "react-router-dom";
-import './Login.css'
+import './common.css'
+
 
 class Register extends Component {
   
@@ -56,7 +56,7 @@ class Register extends Component {
   {
 
     var error = this.props.error != null && this.props.error != "No logged in user"? 
-    (<div class="alert alert-danger" role="alert">
+    (<div className="alert alert-danger my-2" role="alert">
         <strong>Invalid details</strong>
     </div>) : <div /> 
 
@@ -81,51 +81,31 @@ class Register extends Component {
 
         <div className = "body">
             <Navbar currentUser = {this.props.currentUser} />
-            <div class="app">
+            <div className = "container center my-5">
 
-		    <div class="bg">
+            <div className="alert alert-warning" role="alert">
+               Check your registered email to activate your account
             </div>
-		    <form>
-			<header>
-				<img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/reading_0re1.svg" />
-			</header>
+                <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" id = "email" value = {this.state.email} onChange = {this.handleChange} class="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" id = "password" value = {this.state.password} onChange = {this.handleChange} class="form-control" placeholder="Password" />
+                </div>
 
-			<div class="inputs">
-				<input type="email" id = "email" value = {this.state.email} onChange = {this.handleChange} placeholder = "email" />
-				<input type="password" id = "password" value = {this.state.password} onChange = {this.handleChange} placeholder = "password"/>
-			</div>
-		    </form>
+                {error}
 
-		    <footer>
-			<button className = "my-1" onClick = {this.handleSubmit}>Register</button>
-            <Link to="/login" style={{ textDecoration: 'none' , color:'black'}}>
-			<p>Already have an account? Login Here!</p>
-            </Link>
-
-            {error}
-
-		</footer>
+                <button type="submit" class="btn btn-primary" onClick = {this.handleSubmit} >Submit</button>
 
 
-	    </div>
+                </form>
+
+            </div>
         </div>
-        // <div className="Register">
-        //     <Navbar currentUser = {this.props.currentUser}/>
-        //     <h1>Register</h1>
-
-        //     <form method = "POST">
-        //         <div className="form-group">
-        //             <input type="email" id = "email" value = {this.state.email} onChange = {this.handleChange} className="form-control" aria-describedby="emailHelp" /> 
-        //             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        //         </div>
-
-        //         <div class="form-group">
-        //             <input type="password" id = "password" value = {this.state.password} onChange = {this.handleChange} className="form-control" />
-        //         </div>
-                
-        //         <button type="submit" className="btn btn-primary" onClick = {this.handleSubmit}>Submit</button>
-        //     </form>
-        // </div>
       )
   }
     

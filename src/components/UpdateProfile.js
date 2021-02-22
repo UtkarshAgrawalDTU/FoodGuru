@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import firebase from 'firebase/app'
 import 'firebase/storage';
 import Loading from './Loading'
+import './common.css'
 
 
 class UpdateProfile extends Component {
@@ -133,23 +134,31 @@ class UpdateProfile extends Component {
             return(
                 <div className = "Home">
                     <Navbar currentUser = {this.props.currentUser}/>
+                    <div className = "container my-5 center">
+
                     <h2>Update Profile</h2>
-                    <div className = "row">
-
-                        <div className = "col-md-6 col-sm-12">
-                            <input name = "name" type = "text"  placeholder = {this.props.currentUser.name} onChange = {this.handleChange}/>
-                            <input className ="form-control" type = "email" value = {this.props.currentUser.email} readonly />
-                            <button type="button" class="btn btn-primary" onClick = {this.handleSubmit}>Update Profile</button>
-                        </div>
-
-                        <div className = "col-md-6 col-sm-12">
+                    <div className = "container">
+                            <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value = {this.props.currentUser.email} readonly />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Full Name</label>
+                                <input name = "name" type="text" class="form-control" id="exampleInputPassword1" placeholder = {this.props.currentUser.name} onChange = {this.handleChange} />
+                            </div>
+                            
                             <input className ="form-control-file" type = "file" ref = {this.setRef} />
-                            <button type="button" class="btn btn-primary" onClick = {this.upload}>Update Profile Picture</button>
-                        </div>
+                            <br></br>
+                            <button type="button" className="btn btn-primary my-2" onClick = {this.upload}>Update Profile Picture</button>
+                            <br></br>
+                            <button type="button" className="btn btn-primary my-2" onClick = {this.handleSubmit}>Update Profile</button>
+                            </form>
+
+                    </div>                
                     </div>
                     
-                    
-                    
+                       
                     
                 </div>
             )
