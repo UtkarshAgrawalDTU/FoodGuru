@@ -54,6 +54,19 @@ class Navbar extends Component{
                                 <a className="navbar-brand" href="#">Food Guru</a>
                             </Link>
                                 <ul className="navbar-nav ml-auto">
+
+                                <Link to="/map" style={{ textDecoration: 'none' , color:'black'}}> 
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="#">Map</a>
+                                    </li>
+                                </Link>
+
+                                <Link to="/search" style={{ textDecoration: 'none' , color:'black'}}> 
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="#">Search</a>
+                                    </li>
+                                </Link>
+
                                 <Link to="/profile" style={{ textDecoration: 'none' , color:'black'}}> 
                                     <li className="nav-item">
                                         <a className="nav-link" href="#">Profile</a>

@@ -89,7 +89,6 @@ export default class HereMap extends Component{
 
     render()
     {
-        console.log(this.state)
 
         return(
                 <div ref={this.ref} style={{height: '800px', background: 'grey' }} />

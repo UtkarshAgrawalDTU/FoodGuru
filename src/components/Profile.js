@@ -43,9 +43,6 @@ class Profile extends Component {
   
     render()
     {
-        console.log(this.props, this.state);
-
-
         if(this.props.loading || this.state.loading)
         {
             return(
