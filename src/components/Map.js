@@ -86,8 +86,10 @@ export default class HereMap extends Component{
             
                 this.map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
                 this.map.setZoom(this.state.zoom);
-                var currLoc = new H.map.Marker({lat: position.coords.latitude, lng: position.coords.longitude});
-                this.map.addObject(currLoc);
+                this.addMarkerToGroup({lat: position.coords.latitude, lng: position.coords.longitude},
+                    '<div><h4> Your current location </h4>' +
+                    '</div><div><a>Create a new restaurant</a></div>')
+                
                 this.setState({
                     center : {
                         lat : position.coords.latitude,
@@ -125,6 +127,8 @@ export default class HereMap extends Component{
             restaurants : restaurants,
         })
     }
+      
+
 
 
     addMarkerToGroup(coordinate, html) {

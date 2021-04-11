@@ -9,7 +9,7 @@ import Loading from './Loading'
 import './common.css'
 
 
-class UpdateProfile extends Component {
+class NewRestaurant extends Component {
   
     componentDidMount()
     {
@@ -37,7 +37,6 @@ class UpdateProfile extends Component {
             error : null,
             form_details : {
                 name: "",
-                photoUrl : "",
             }
         };
 
@@ -48,14 +47,9 @@ class UpdateProfile extends Component {
 
     handleChange(e)
     {
-
-        this.setState(prevState => {
-            return {
-                ...prevState,
-                form_details : {
-                    name : e.target.value,
-                    photoUrl : prevState.form_details.photoUrl,
-                }
+        this.setState({
+            form_details : {
+                [e.target.name] : e.target.value,
             }
         })
     }
@@ -64,52 +58,7 @@ class UpdateProfile extends Component {
 
     handleSubmit(event)
     {
-        event.preventDefault();
-
-        this.setState({
-            loading : true
-        })
-        var db = firebase.firestore();
-
-        if(this.state.form_details.photoUrl == "")
-        {
-            db.collection("users").doc(this.props.currentUser.email).update({
-                username : this.state.form_details.name
-            })
-            .then(() => {
-                console.log("Updated user profile")
-                this.setState({
-                    loading : false,
-                    error: false
-                })
-            })
-            .catch((error) => {
-                this.setState({
-                    loading : false,
-                    error: true,
-                })
-            })
-        }
-
-        else{
-            db.collection("users").doc(this.props.currentUser.email).update({
-                photoUrl : this.state.form_details.photoUrl,
-                username : this.state.form_details.name
-            })
-            .then(() => {
-                console.log("Updated user profile")
-                this.setState({
-                    loading : false,
-                    error: false
-                })
-            })
-            .catch((error) => {
-                this.setState({
-                    loading : false,
-                    error: true,
-                })
-            })
-        }
+        ///complete this!!
     }
 
 
@@ -134,16 +83,17 @@ class UpdateProfile extends Component {
             .then(snapshot => {
                 mainImage.getDownloadURL()
                 .then(url => {
-                    this.setState(prevState => {
-                        return {
-                            ...prevState,
-                            form_details : {
-                                name : prevState.form_details.name,
-                                photoUrl : url
-                            }
-                        }
-                    })
                     console.log(url);
+                    db.collection("users").doc(this.props.currentUser.email).update({
+                        photoUrl : url
+                    })
+                    .then(() => {
+                        console.log("Updated user profile url")
+                        err = false;
+                    })
+                    .catch((error) => {
+                        err = error;
+                    })
                 })
                 .catch(error => {
                     err = error;
@@ -156,6 +106,7 @@ class UpdateProfile extends Component {
 
         this.setState({
             loading : false,
+            error : err,
         })
 
     }
@@ -176,11 +127,6 @@ class UpdateProfile extends Component {
         if(this.props.currentUser === null)
         {
             return <Redirect to = "/" />
-        }
-
-        if(this.state.error == false)
-        {
-            return <Redirect to = "/profile" />
         }
         
         else
@@ -237,4 +183,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(NewRestaurant)
