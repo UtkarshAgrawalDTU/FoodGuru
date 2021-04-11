@@ -199,37 +199,47 @@ class NewRestaurant extends Component {
     }
 
 
-
+    //error here
     handleSubmit(event)
     {
         event.preventDefault()
         var db = firebase.firestore();
 
-        db.collection("restaurant").add({
-            identified_by : this.props.currentUser.email,
-            name: this.state.restaurant_details.name,
-            photoUrls : this.state.restaurant_details.photoUrls,
-            ratings: this.state.review_details.ratings,
-            timestamp : firebase.firestore.Timestamp.now(),
-            total_reviews : 1
-        })
-        .then((docRef) => {
-            const id = docRef.id;
-            db.collection("reviews").add({
-                image_url : this.state.restaurant_details.photoUrls,
+        if(this.state.center.lat != null)
+        {
+            db.collection("restaurant").add({
+                identified_by : this.props.currentUser.email,
+                name: this.state.restaurant_details.name,
+                photoUrls : this.state.restaurant_details.photoUrls,
                 ratings: this.state.review_details.ratings,
-                review: this.state.review_details.review,
-                speciality: this.state.review_details.speciality,
-                restaurant: id,
-                user: this.props.currentUser.email,
                 timestamp : firebase.firestore.Timestamp.now(),
+                coords : new firebase.firestore.GeoPoint(this.state.center.lat, this.state.center.lng),
+                total_reviews : 1
             })
-            .then(() => {
-                this.setState({
-                    loading : false,
-                    error: false,
-                    success : true,
+            .then((docRef) => {
+                const id = docRef.id;
+                db.collection("reviews").add({
+                    image_url : this.state.restaurant_details.photoUrls,
+                    ratings: this.state.review_details.ratings,
+                    review: this.state.review_details.review,
+                    speciality: this.state.review_details.speciality,
+                    restaurant: id,
+                    user: this.props.currentUser.email,
+                    timestamp : firebase.firestore.Timestamp.now(),
                 })
+                .then(() => {
+                    this.setState({
+                        loading : false,
+                        error: false,
+                        success : true,
+                    })
+                })
+                .catch((error) => {
+                    this.setState({
+                        loading : false,
+                        error: error
+                    })
+                });
             })
             .catch((error) => {
                 this.setState({
@@ -237,13 +247,8 @@ class NewRestaurant extends Component {
                     error: error
                 })
             });
-        })
-        .catch((error) => {
-            this.setState({
-                loading : false,
-                error: error
-            })
-        });
+        }
+        
     }
 
 
@@ -411,7 +416,7 @@ class NewRestaurant extends Component {
                                 <br></br>
 
                                 {error}
-                                
+
                                 </form>
 
                         </div>                
