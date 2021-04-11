@@ -88,7 +88,7 @@ export default class HereMap extends Component{
                 this.map.setZoom(this.state.zoom);
                 this.addMarkerToGroup({lat: position.coords.latitude, lng: position.coords.longitude},
                     '<div><h4> Your current location </h4>' +
-                    '</div><div><a>Create a new restaurant</a></div>')
+                    '</div><div><Link to= "/newRestaurant" ><a href="/newRestaurant">New Restaurant?</a></Link></div>')
                 
                 this.setState({
                     center : {

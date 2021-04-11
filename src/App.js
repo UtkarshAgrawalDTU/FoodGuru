@@ -8,6 +8,8 @@ import Signout from './components/Signout'
 import UpdateProfile from './components/UpdateProfile'
 import Home from './components/Home'
 import Search from './components/Search'
+import NewRestaurant from './components/NewRestaurant'
+
 
 import {
   BrowserRouter as Router,
@@ -52,6 +54,10 @@ function App() {
 
           <Route path="/" exact>
             <Home />
+          </Route>
+
+          <Route path = "/newRestaurant">
+            <NewRestaurant />
           </Route>
 
         </Switch>

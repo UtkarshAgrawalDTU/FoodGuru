@@ -204,7 +204,7 @@ class UpdateProfile extends Component {
                             
                             <input className ="form-control-file" type = "file" ref = {this.setRef} />
                             <br></br>
-                            <button type="button" className="btn btn-primary my-2" onClick = {this.upload}>Update Profile Picture</button>
+                            <button type="button" className="btn btn-primary my-2" onClick = {this.upload}>Upload Image</button>
                             <br></br>
                             <button type="button" className="btn btn-primary my-2" onClick = {this.handleSubmit}>Update Profile</button>
                             </form>
