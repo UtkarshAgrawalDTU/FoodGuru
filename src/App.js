@@ -9,7 +9,7 @@ import UpdateProfile from './components/UpdateProfile'
 import Home from './components/Home'
 import Search from './components/Search'
 import NewRestaurant from './components/NewRestaurant'
-
+import Restaurant from './components/Restaurant'
 
 import {
   BrowserRouter as Router,
@@ -59,6 +59,8 @@ function App() {
           <Route path = "/newRestaurant">
             <NewRestaurant />
           </Route>
+
+          <Route path = "/restaurant/:id" component = {Restaurant} />
 
         </Switch>
     </Router>

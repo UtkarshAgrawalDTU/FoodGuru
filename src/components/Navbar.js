@@ -19,7 +19,7 @@ class Navbar extends Component{
             return (
                 <div className = "Home">
                     <div>
-                        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+                        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom mb-5">
                             <div className="container">
                             <Link to="/" style={{ textDecoration: 'none' , color:'black'}}>
                                 <a className="navbar-brand" href="#">Food Guru</a>

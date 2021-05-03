@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import H from "@here/maps-api-for-javascript";
-import firebase from "firebase/app"
 
 
 export default class HereMap extends Component{
@@ -22,14 +21,12 @@ export default class HereMap extends Component{
             },
             zoom: props.zoom,
             theme: props.theme,
-            restaurants : [],
         }
     }
 
 
     componentDidMount()
     {
-
         if(!this.map)
         {
             const platform = new H.service.Platform({
@@ -55,27 +52,16 @@ export default class HereMap extends Component{
 
               this.group = new H.map.Group();
               this.map.addObject(this.group);
-      
-                this.group.addEventListener('tap', (evt) => {
-                var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-                    content: evt.target.getData()
-                });
-
-                this.ui.addBubble(bubble);
-                }, false);
-
-                var Marker = new H.map.Marker({lat:this.props.lat, lng:this.props.lng});
-                this.map.addObject(Marker);
-        
+              var Marker = new H.map.Marker({lat:this.props.lat, lng:this.props.lng});
+              this.map.addObject(Marker);
         }
     }      
 
 
     render()
     {
-
         return(
-                <div ref={this.ref} style={{height: '100%', background: 'grey' }} />
+                <div ref={this.ref} style={{height: '100%', background: 'grey', minHeight : '300px'}} />
         );
     }
 };

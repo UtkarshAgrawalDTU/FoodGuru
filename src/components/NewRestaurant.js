@@ -199,7 +199,6 @@ class NewRestaurant extends Component {
     }
 
 
-    //error here
     handleSubmit(event)
     {
         event.preventDefault()
