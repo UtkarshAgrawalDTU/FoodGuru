@@ -340,7 +340,7 @@ class NewRestaurant extends Component {
                     <div className = "row">
                         <div className = "col-lg-6 col-md-6 d-md-block d-sm-none d-none">
                         <HereMap
-                            apikey= "UXLkRChcRiPgtuU9dGgOamUae8XHGdOIIhpCIgNaTyk"
+                            apikey= {process.env.REACT_APP_API_KEY_HEREMAP}
                             lat={this.state.center.lat}
                             lng= {this.state.center.lng}
                             zoom="12"

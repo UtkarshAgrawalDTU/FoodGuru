@@ -13,13 +13,13 @@ import 'firebase/analytics';
 
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAmne7uAwupywEfVRdU8d9wuklBfofaP7U",
-  authDomain: "foodguru-18724.firebaseapp.com",
-  projectId: "foodguru-18724",
-  storageBucket: "foodguru-18724.appspot.com",
-  messagingSenderId: "937849525346",
-  appId: "1:937849525346:web:9e037de12fcf2b2d396d3b",
-  measurementId: "G-W2W35N9YPY"
+  apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID
 };
 
 firebase.initializeApp(firebaseConfig);

@@ -54,7 +54,7 @@ class MyMap extends Component{
             <div>
                 <Navbar currentUser = {this.props.currentUser}/>
                 <HereMap
-                    apikey= "UXLkRChcRiPgtuU9dGgOamUae8XHGdOIIhpCIgNaTyk"
+                    apikey= {process.env.REACT_APP_API_KEY_HEREMAP}
                     lat="20"
                     lng="40"
                     zoom="12"

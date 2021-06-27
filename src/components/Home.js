@@ -106,7 +106,7 @@ class Home extends Component{
 
                         <div className = "col-lg-5 col-md-12 col-sm-12 col-xs-12 row2">
                         <HereMap
-                            apikey= "UXLkRChcRiPgtuU9dGgOamUae8XHGdOIIhpCIgNaTyk"
+                            apikey = {process.env.REACT_APP_API_KEY_HEREMAP}
                             lat={this.state.center.lat}
                             lng= {this.state.center.lng}
                             zoom="12"

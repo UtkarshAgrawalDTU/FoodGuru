@@ -11,6 +11,24 @@ import Loading from './Loading'
 import Rating from '@material-ui/lab/Rating';
 import './common.css'
 import HereMap from './StaticMap'
+import ImageGridList from './ImageGridList'
+import VirtualisedList from './ReviewList'
+
+function union_arrays (x, y) {
+    var obj = {};
+    for (var i = x.length-1; i >= 0; -- i)
+       obj[x[i]] = x[i];
+    for (var i = y.length-1; i >= 0; -- i)
+       obj[y[i]] = y[i];
+    var res = []
+    for (var k in obj) {
+      if (obj.hasOwnProperty(k))  // <-- optional
+        res.push(obj[k]);
+    }
+    return res;
+  }
+
+
 
 class Restaurant extends Component {
   
@@ -135,11 +153,14 @@ class Restaurant extends Component {
         
         else
         {
-            var src = "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80";
-            if(this.props.currentUser.photoUrl != "" && this.props.currentUser.photoUrl != null)
+            var temp = []
+            for(var i = this.state.review_details.length-1; i >= 0; -- i)
             {
-                src = this.props.currentUser.photoUrl;
+                var newarr = this.state.review_details[i].image_url;
+                temp = temp.concat(newarr);
             }
+                
+            var images = union_arrays(this.state.restaurant_details.photoUrls, temp);
 
             return(
 
@@ -190,27 +211,30 @@ class Restaurant extends Component {
                             <div className = "col-lg-6 col-md-12 row2">
                                 <div className = "center">
                                     <h3 className = "subheading my-5 color5">Photos</h3>
-
-                                </div>
-                            </div>
-
-                            <div className = "col-lg-6 col-md-12">
-                                <div className = "center">
-                                    <h3 className = "subheading my-5 color5">Location</h3>
-                                    <div className = "mx-3 my-3">
-                                    <HereMap
-                                        apikey= "UXLkRChcRiPgtuU9dGgOamUae8XHGdOIIhpCIgNaTyk"
-                                        lat= {this.state.restaurant_details.coords.x_}
-                                        lng= {this.state.restaurant_details.coords.N_}
-                                        zoom="12"
-                                        theme={this.state.theme}/>
+                                    <div className = "center mx-3 my-4">
+                                    <ImageGridList images = {images}/>
                                     </div>
-
+                                    
                                 </div>
-
                             </div>
 
-                            <div className = "col-lg-12 color5">
+                            <div className = "col-lg-6 col-md-12 col-sm-12 col-xs-12 row2">
+                        <HereMap
+                            apikey= {process.env.REACT_APP_API_KEY_HEREMAP}
+                            lat={this.state.restaurant_details.coords.x_}
+                            lng= {this.state.restaurant_details.coords.N_}
+                            zoom="12"
+                            theme={this.state.theme}/>
+                        </div>
+
+                            <div className = "col-lg-12 row2">
+                                <div className = "center">
+                                <h2 className="subheading my-5"><span className = "color5">Reviews</span></h2>
+                                <div className = "my-5 mx-5">
+                                    <VirtualisedList reviews = {this.state.review_details}/>
+                                </div>
+                                </div>
+                                
                             </div>
 
 
